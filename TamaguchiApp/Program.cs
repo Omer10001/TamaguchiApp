@@ -7,6 +7,7 @@ namespace TamaguchiApp
         static void Main(string[] args)
         {
             Console.WriteLine("NOIVFDMGFMGOIFJGOIGFJGIKFMGOPFDLDMFOIPRMGOIKNGJOIKFDNGOIDNGOIIFNGIDNGUDBVFIDBGUDRHGURDGH");
+            
         }
     }
 }
