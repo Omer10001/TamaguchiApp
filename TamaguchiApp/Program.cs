@@ -5,11 +5,12 @@ namespace TamaguchiApp
 {
     class Program
     {
-        // test koski
+        
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MainUI ui = new MainUI();
+            ui.ApplicationStart();
         }
     }
 }
