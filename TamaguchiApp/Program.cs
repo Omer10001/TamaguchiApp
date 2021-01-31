@@ -1,4 +1,5 @@
 ﻿using System;
+using TamaguchiApp.UI;
 
 namespace TamaguchiApp
 {
@@ -6,7 +7,8 @@ namespace TamaguchiApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MainUI ui = new MainUI(new LoginScreen());
+            ui.ApplicationStart();
         }
     }
 }
