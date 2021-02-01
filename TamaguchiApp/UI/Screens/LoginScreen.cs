@@ -30,7 +30,7 @@ namespace TamaguchiApp.UI
 
                 
                 
-                if (MainUI.currentPlayer == null)
+                if (MainUI.CurrentPlayer == null)
                 {
                     Console.WriteLine("error usr,pass");
                     Console.ReadLine();

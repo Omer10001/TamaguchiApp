@@ -13,5 +13,6 @@ namespace TamaguchiApp.DataTransferObjects
         public string Email { get; set; }
 
         public string PlayerID { get; set; }
+        public string Password { get; set; }
     }
 }
