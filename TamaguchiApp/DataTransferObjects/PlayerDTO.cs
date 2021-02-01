@@ -6,5 +6,10 @@ namespace TamaguchiApp.DataTransferObjects
 {
     class PlayerDTO
     {
+        public PlayerDTO()
+        {
+
+        }
+        public string Email { get; set; }
     }
 }
