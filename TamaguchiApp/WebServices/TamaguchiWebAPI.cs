@@ -31,17 +31,16 @@ namespace TamaguchiApp.WebServices
             }
             catch ()
             {
-        //public async Task<List<MyDto>> GetSomethingAsync()
-        //{
 
-        //calls server, server returns message to this function.
-
-
-
-        //}
-    }
-}
             }
+            //public async Task<List<MyDto>> GetSomethingAsync()
+            //{
+
+            //calls server, server returns message to this function.
+
+
+
+            //}
         }
     }
 }
