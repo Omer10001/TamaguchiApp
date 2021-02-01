@@ -23,6 +23,13 @@ namespace TamaguchiApp.WebServices
             this.client = new HttpClient(handler, true);
             this.baseUri = baseUri;
         }
+        //public async Task<List<MyDto>> GetSomethingAsync()
+        //{
 
+        //calls server, server returns message to this function.
+
+
+
+        //}
     }
 }

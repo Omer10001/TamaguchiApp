@@ -4,6 +4,9 @@ using System.Text;
 
 namespace TamaguchiApp.UI
 {
+    // get info and do a function to server side and the server side will put it in the db and will return a response.
+    // I get a reponse and set it in the clients end side.
+
     class CreateAnimalScreen : Screen
     {
         public CreateAnimalScreen() : base ("Create Animal") 
@@ -33,7 +36,7 @@ namespace TamaguchiApp.UI
             // random 200-400 gr
 
 
-                MainUI.db.CreateAnimal(petname, MainUI.currentPlayer.PlayerId, rand_weight);
+                MainUI.db.CreateAnimal(petname, MainUI.CurrentPlayer.PlayerID, rand_weight);
 
                 Console.WriteLine("Pet was created succesfully press any key to continue");
                 Console.ReadKey();
