@@ -23,6 +23,16 @@ namespace TamaguchiApp.WebServices
             this.client = new HttpClient(handler, true);
             this.baseUri = baseUri;
         }
+        public async Task<List<ExerciseDTO>> GetExByTypeAsync(int typeID)
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetExListByType?typeID={typeID}");
+            }
+            catch ()
+            {
 
+            }
+        }
     }
 }

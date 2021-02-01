@@ -1,5 +1,5 @@
-﻿using Tamaguchi.UI;
-using Tamaguchi.Models;
+﻿using TamaguchiApp.UI;
+using TamaguchiApp.DataTransferObjects;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -9,14 +9,14 @@ namespace TamaguchiApp.UI
 {
     class TypedExcersicesMenuScreen:Screen
     {
-        Dictionary<int, Exercise> Dic = new Dictionary<int, Exercise>();
+        Dictionary<int, ExerciseDTO> Dic = new Dictionary<int, ExerciseDTO>();
         int typeID;
         int count = 1;
         public TypedExcersicesMenuScreen(int typeID, string methodType) : base(methodType)
         {
             this.typeID = typeID;
-            List<Exercise> list = MainUI.db.ExercisesByType(typeID);
-            foreach(Exercise ex in list)
+            List<ExerciseDTO> list = MainUI.db.ExercisesByType(typeID);
+            foreach(ExerciseDTO ex in list)
             {
                 Dic.Add(count, ex);
                 count++;
