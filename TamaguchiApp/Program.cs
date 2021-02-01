@@ -1,14 +1,16 @@
 ﻿using System;
+using TamaguchiApp.UI;
 
 namespace TamaguchiApp
 {
     class Program
     {
-        // test koski
+        
 
         static void Main(string[] args)
         {
-            Console.WriteLine("NOIVFDMGFMGOIFJGOIGFJGIKFMGOPFDLDMFOIPRMGOIKNGJOIKFDNGOIDNGOIIFNGIDNGUDBVFIDBGUDRHGURDGH");
+            MainUI ui = new MainUI();
+            ui.ApplicationStart();
         }
     }
 }
