@@ -26,11 +26,11 @@ namespace TamaguchiApp.UI
                     string email = Console.ReadLine();
                     Console.WriteLine("Please enter password");
                     string pass = Console.ReadLine();
-                    MainUI.currentPlayer = MainUI.db.Login(email, pass);
+                    MainUI.CurrentPlayer = MainUI.db.Login(email, pass);
 
                 
                 
-                if (MainUI.currentPlayer == null)
+                if (MainUI.CurrentPlayer == null)
                 {
                     Console.WriteLine("error usr,pass");
                     Console.ReadLine();
@@ -42,7 +42,7 @@ namespace TamaguchiApp.UI
                     Console.ReadKey();
                     //if the animal is dead
                     
-                    if(MainUI.currentPlayer.IsPetDead())
+                    if(MainUI.CurrentPlayer.IsPetDead())
                     {
                         Screen next = new DeadMenu("your animal died");
                         next.Show();
