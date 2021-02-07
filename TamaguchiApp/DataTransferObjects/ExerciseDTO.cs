@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TamaguchiApp.DataTransferObjects
 {
-    class ExerciseDTO
+    public class ExerciseDTO
     {
         public int ExerciseId { get; set; }
         public int ExerciseTypeId { get; set; }
