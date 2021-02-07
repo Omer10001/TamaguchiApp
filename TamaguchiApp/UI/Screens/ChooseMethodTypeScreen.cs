@@ -10,6 +10,7 @@ namespace TamaguchiApp.UI
     {
         public ChooseMethodTypeScreen() : base("Choose Method Type Screen: ")
         {
+
             this.items = new List<MenuItem>();
             this.AddItem(new MenuItem("Eating Methods", new TypedExcersicesMenuScreen(1, "Feeding Exercises")));
             this.items.Add(new MenuItem("Playing Methods", new TypedExcersicesMenuScreen(3, "Playing Exercises")));
