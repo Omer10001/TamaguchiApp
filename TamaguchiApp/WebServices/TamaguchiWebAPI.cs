@@ -28,10 +28,22 @@ namespace TamaguchiApp.WebServices
             try
             {
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetExListByType?typeID={typeID}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    return JsonSerializer.Deserialize<List<ExerciseDTO>>(content, options);
+                }
+                else
+                    return null;
             }
-            catch ()
+            catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
+                return null;
             }
             //public async Task<List<MyDto>> GetSomethingAsync()
             //{
