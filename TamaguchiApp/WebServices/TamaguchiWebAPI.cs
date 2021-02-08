@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TamaguchiApp.WebServices
 {
-    public class TamaguchiWebAPI
+    public class TamaguchiWebAPI 
     {
         private HttpClient client;
         private string baseUri;
@@ -23,6 +23,61 @@ namespace TamaguchiApp.WebServices
             this.client = new HttpClient(handler, true);
             this.baseUri = baseUri;
         }
+        
+        public async Task<AnimalDTO> AddAnimal(AnimalDTO newanimal)
+        {
+            try
+            {
+                string url = $"{this.baseUri}solve";
+                
+
+                string json = JsonSerializer.Serialize(newanimal);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    AnimalDTO result = JsonSerializer.Deserialize<AnimalDTO>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    AnimalDTO animalResult = new AnimalDTO
+                    {
+                        //Success = false
+                    };
+                    return animalResult;
+                }
+            }
+            catch (Exception ex)
+            {
+                AnimalDTO animalResult = new AnimalDTO
+                {
+                    //Success = false
+                };
+                return animalResult;
+            }
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
+
         public async Task<List<ExerciseDTO>> GetExByTypeAsync(int typeID)
         {
             try

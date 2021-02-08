@@ -1,6 +1,13 @@
-﻿using System;
+﻿using TamaguchiApp.UI;
+using System;
 using System.Collections.Generic;
+using TamaguchiApp.WebServices;
+using TamaguchiApp.DataTransferObjects;
 using System.Text;
+using System.Linq;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace TamaguchiApp.UI
 {
@@ -17,11 +24,18 @@ namespace TamaguchiApp.UI
 
         }
 
+        
+
         public override void Show()
         {
             base.Show();
 
 
+
+
+
+
+            // name weight playerid
             try
             {
 
