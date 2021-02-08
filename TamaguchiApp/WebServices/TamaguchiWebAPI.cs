@@ -42,5 +42,34 @@ namespace TamaguchiApp.WebServices
 
             //}
         }
+        public async Task<PlayerDTO> LoginAsync(string email, string password)
+        {
+            try
+            {
+                PlayerDTO p = new PlayerDTO { Email = email, Password = password };
+                string playerJson = JsonSerializer.Serialize(p);
+                StringContent stringContent = new StringContent(playerJson, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/Login", stringContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    PlayerDTO newP = JsonSerializer.Deserialize<PlayerDTO>(content, options);
+                    return newP;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
     }
 }
