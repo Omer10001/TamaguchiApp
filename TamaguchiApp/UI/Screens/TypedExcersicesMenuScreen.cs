@@ -52,9 +52,7 @@ namespace TamaguchiApp.UI
                 }
                 else
                 {
-                    //Pet p = MainUI.db.GetCurrentPetInfo(MainUI.currentPlayer.PlayerId);
-                    //p.DoExersice(ex);
-                    //MainUI.db.UpdatePlayerMethodHistory(p, MainUI.currentPlayer, ex);
+                    
                     Console.WriteLine("Your method was done successfuly!\nPress any key to return to main menu");
                     Console.ReadKey();
                    
