@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using TamaguchiApp.WebServices;
+using System.Threading.Tasks;
 using TamaguchiApp.DataTransferObjects;
 using System.Text;
 
@@ -26,7 +27,10 @@ namespace TamaguchiApp.UI
                     string email = Console.ReadLine();
                     Console.WriteLine("Please enter password");
                     string pass = Console.ReadLine();
-                    MainUI.CurrentPlayer = MainUI.db.Login(email, pass);
+                    Task<PlayerDTO> t = MainUI.api.LoginAsync(email, pass);
+                Console.WriteLine("please wait....");
+                t.Wait();
+                MainUI.CurrentPlayer = t.Result;
 
                 
                 

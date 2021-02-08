@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TamaguchiApp.DataTransferObjects
 {
-    class PlayerDTO
+    public class PlayerDTO
     {
         public PlayerDTO()
         {
