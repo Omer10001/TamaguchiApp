@@ -52,8 +52,12 @@ namespace TamaguchiApp.UI
                 }
                 else
                 {
-                    
-                    Console.WriteLine("Your method was done successfuly!\nPress any key to return to main menu");
+                    Task<bool> t = MainUI.api.DoExerciseAsync(ex);
+                    t.Wait();
+                    if (t.Result)
+                        Console.WriteLine("Your method was done successfuly!\nPress any key to return to main menu");
+                    else
+                        Console.WriteLine("Method calling didn't work out... :(");
                     Console.ReadKey();
                    
                 }
