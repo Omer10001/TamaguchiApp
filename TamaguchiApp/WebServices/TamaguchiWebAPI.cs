@@ -136,5 +136,12 @@ namespace TamaguchiApp.WebServices
                 return null;
             }
         }
+        public async Task<bool> DoExerciseAsync(ExerciseDTO exDTO)
+        {
+            string exJson = JsonSerializer.Serialize(exDTO);
+            StringContent stringContent = new StringContent(exJson, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/DoExercise", stringContent);
+            return (response.IsSuccessStatusCode);
+        }
     }
 }
