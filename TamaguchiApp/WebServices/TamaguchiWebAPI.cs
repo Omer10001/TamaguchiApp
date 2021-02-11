@@ -25,11 +25,15 @@ namespace TamaguchiApp.WebServices
         }
 
         public async Task<AnimalDTO> AddAnimal(AnimalDTO newanimal)
+        
+        public async Task<bool> AddAnimal(PetDTO newanimal)
         {
             try
             {
                 string url = $"{this.baseUri}solve";
 
+                string url = $"{this.baseUri}/AddAnimal";
+                
 
                 string json = JsonSerializer.Serialize(newanimal);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -46,19 +50,26 @@ namespace TamaguchiApp.WebServices
                     };
                     AnimalDTO result = JsonSerializer.Deserialize<AnimalDTO>(resContent, options);
                     return result;
+
+                    //string resContent = await response.Content.ReadAsStringAsync();
+
+                    //JsonSerializerOptions options = new JsonSerializerOptions
+                    //{
+                    //    PropertyNameCaseInsensitive = true
+                    //};
+                    //PetDTO result = JsonSerializer.Deserialize<PetDTO>(resContent, options);
+                    //return result;
+                    return true;
                 }
                 else
                 {
-                    AnimalDTO animalResult = new AnimalDTO
-                    {
-                        //Success = false
-                    };
-                    return animalResult;
+                    
+                    return false;
                 }
             }
             catch (Exception ex)
             {
-                AnimalDTO animalResult = new AnimalDTO
+                PetDTO animalResult = new PetDTO
                 {
                     //Success = false
                 };
