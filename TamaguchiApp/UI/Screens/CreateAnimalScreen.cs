@@ -43,19 +43,29 @@ namespace TamaguchiApp.UI
                Console.WriteLine("whats your pet name?");
                string petname = Console.ReadLine();
 
-                Random weight = new Random();
-                int rand_weight = weight.Next(200, 401);
+                PetDTO newpet = new PetDTO {PetName = petname };
+               
     
-            
-            // random 200-400 gr
+
+                Task<bool> t = MainUI.api.AddAnimal(newpet);
+
+                t.Wait();
+                if (t.Result == true)
+                {
+                    Console.WriteLine("Pet was created succesfully press any key to continue");
+                    Console.ReadKey();
+                    Screen next = new MainMenu("Main Menu");
+                    next.Show();
+                }
+                else
+                {
+                    Console.WriteLine("Please login to use this feature");
+                    Console.ReadKey();       
+                   
+                }
 
 
-                MainUI.db.CreateAnimal(petname, MainUI.CurrentPlayer.PlayerID, rand_weight);
-
-                Console.WriteLine("Pet was created succesfully press any key to continue");
                 Console.ReadKey();
-                Screen next = new MainMenu("Main Menu");
-                next.Show();
 
             }
             catch (Exception e)
