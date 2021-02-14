@@ -25,6 +25,7 @@ namespace TamaguchiApp.UI
                 count++;
             }
         }
+        // hhjgkjhjhlhhkjhlj
         public override void Show()
         {
             base.Show();
