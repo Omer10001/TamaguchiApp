@@ -76,6 +76,19 @@ namespace TamaguchiApp.WebServices
                 return animalResult;
             }
         }
+
+
+
+
+
+    
+
+
+
+
+
+
+
         public async Task<List<ExerciseDTO>> GetExByTypeAsync(int typeID)
         {
             try

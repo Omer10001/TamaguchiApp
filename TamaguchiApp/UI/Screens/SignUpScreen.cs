@@ -178,7 +178,7 @@ namespace TamaguchiApp.UI
             try
             {
                 MainUI.db.CreateUser(firstName, lastName, email, gender, birthDate, userName, userPassword);
-                MainUI.currentPlayer = MainUI.db.Players.Where(p => p.Email == email && p.UserPassword == userPassword).FirstOrDefault();
+                MainUI.CurrentPlayer = MainUI.db.Players.Where(p => p.Email == email && p.UserPassword == userPassword).FirstOrDefault();
                 Console.WriteLine("Sign up successful, press any key to continue");
                 Console.ReadKey();
                 Screen next = new CreateAnimalScreen();
