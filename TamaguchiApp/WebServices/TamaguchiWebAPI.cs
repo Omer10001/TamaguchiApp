@@ -111,7 +111,7 @@ namespace TamaguchiApp.WebServices
         {
             try
             {
-                PlayerDTO p = new PlayerDTO { Email = email, Password = password };
+                PlayerDTO p = new PlayerDTO { Email = email, UserPassword = password };
                 string playerJson = JsonSerializer.Serialize(p);
                 StringContent stringContent = new StringContent(playerJson, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/Login", stringContent);
@@ -142,6 +142,13 @@ namespace TamaguchiApp.WebServices
             StringContent stringContent = new StringContent(exJson, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/DoExercise", stringContent);
             return (response.IsSuccessStatusCode);
+        }
+        public async Task<bool> SignUpAsync (PlayerDTO p)
+        {
+            string playerJson = JsonSerializer.Serialize(p);
+            StringContent stringContent = new StringContent(playerJson, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/SignUp", stringContent);
+            return response.IsSuccessStatusCode;
         }
     }
 }

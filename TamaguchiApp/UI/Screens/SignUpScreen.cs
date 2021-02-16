@@ -1,7 +1,8 @@
-﻿using Tamaguchi.UI;
-using Tamaguchi.Models;
+﻿using TamaguchiApp.UI;
+using TamaguchiApp.DataTransferObjects;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text;
 
@@ -23,13 +24,7 @@ namespace TamaguchiApp.UI
             string lastName = Console.ReadLine();
             Console.Write("Enter player's email:      ");
             string email = Console.ReadLine();
-            Player p = MainUI.db.Players.Where(p => p.Email == email).FirstOrDefault();
-            while (p != null)
-            {
-                Console.WriteLine("This email allready belongs to other player, Please enter an other one:");
-                email = Console.ReadLine();
-                p = MainUI.db.Players.Where(p => p.Email == email).FirstOrDefault();
-            }
+           
             #region genderGetting
             bool valid1 = false;
             int genderChoose = 0;
@@ -177,12 +172,21 @@ namespace TamaguchiApp.UI
             string userPassword = Console.ReadLine();
             try
             {
-                MainUI.db.CreateUser(firstName, lastName, email, gender, birthDate, userName, userPassword);
-                MainUI.CurrentPlayer = MainUI.db.Players.Where(p => p.Email == email && p.UserPassword == userPassword).FirstOrDefault();
-                Console.WriteLine("Sign up successful, press any key to continue");
-                Console.ReadKey();
-                Screen next = new CreateAnimalScreen();
-                next.Show();
+                PlayerDTO newPlayer = new PlayerDTO { FirstName = firstName, LastName = lastName, Email = email, Gender = gender, BirthDate = birthDate, UserName = userName, UserPassword = userPassword };
+                Task<bool> t = MainUI.api.SignUpAsync(newPlayer);
+                t.Wait();
+                if(t.Result )
+                {
+                    MainUI.CurrentPlayer = newPlayer;
+                    Console.WriteLine("Sign up successful, press any key to continue");
+                    Console.ReadKey();
+                    Screen next = new CreateAnimalScreen();
+                    next.Show();
+                }
+                else
+                {
+                    Console.WriteLine("Something went wrong or the email has already been used, please try again");
+                }
 
             }
             catch (Exception e)
