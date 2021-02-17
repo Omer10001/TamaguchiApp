@@ -24,13 +24,13 @@ namespace TamaguchiApp.WebServices
             this.baseUri = baseUri;
         }
 
-        public async Task<AnimalDTO> AddAnimal(AnimalDTO newanimal)
+        
         
         public async Task<bool> AddAnimal(PetDTO newanimal)
         {
             try
             {
-                string url = $"{this.baseUri}solve";
+               
 
                 string url = $"{this.baseUri}/AddAnimal";
                 
@@ -48,8 +48,8 @@ namespace TamaguchiApp.WebServices
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    AnimalDTO result = JsonSerializer.Deserialize<AnimalDTO>(resContent, options);
-                    return result;
+                   
+                    return true;
 
                     //string resContent = await response.Content.ReadAsStringAsync();
 
@@ -59,7 +59,7 @@ namespace TamaguchiApp.WebServices
                     //};
                     //PetDTO result = JsonSerializer.Deserialize<PetDTO>(resContent, options);
                     //return result;
-                    return true;
+                    
                 }
                 else
                 {
@@ -69,11 +69,8 @@ namespace TamaguchiApp.WebServices
             }
             catch (Exception ex)
             {
-                PetDTO animalResult = new PetDTO
-                {
-                    //Success = false
-                };
-                return animalResult;
+                
+                return false;
             }
         }
 
@@ -162,6 +159,21 @@ namespace TamaguchiApp.WebServices
             StringContent stringContent = new StringContent(playerJson, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/SignUp", stringContent);
             return response.IsSuccessStatusCode;
+        }
+        public async Task<bool> IsPetDeadAsync()
+        {
+            HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/IsPetDead");
+            if (response.IsSuccessStatusCode)
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                string content = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<bool>(content, options);
+            }
+            else
+                return false;
         }
     }
 }

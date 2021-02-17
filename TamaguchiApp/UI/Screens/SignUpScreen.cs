@@ -186,12 +186,14 @@ namespace TamaguchiApp.UI
                 else
                 {
                     Console.WriteLine("Something went wrong or the email has already been used, please try again");
+                    Console.ReadKey();
                 }
 
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Something went wrong {e}");
+                Console.ReadKey();
             }
 
         }

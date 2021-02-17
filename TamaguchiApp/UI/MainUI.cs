@@ -20,7 +20,7 @@ namespace TamaguchiApp.UI
         }
         public void ApplicationStart()
         {
-            api = new TamaguchiWebAPI(@"https://localhost:44311/api");
+            api = new TamaguchiWebAPI(@"https://localhost:44318/api");
             CurrentPlayer = null;
             StartScreen.Show();
         }

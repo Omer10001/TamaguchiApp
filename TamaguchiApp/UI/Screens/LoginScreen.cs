@@ -33,7 +33,8 @@ namespace TamaguchiApp.UI
                 MainUI.CurrentPlayer = t.Result;
 
                 
-                
+
+
                 if (MainUI.CurrentPlayer == null)
                 {
                     Console.WriteLine("error usr,pass");
@@ -45,8 +46,9 @@ namespace TamaguchiApp.UI
                     Console.WriteLine("Login Succesfull press any key to continue");
                     Console.ReadKey();
                     //if the animal is dead
-                    
-                    if(MainUI.CurrentPlayer.IsPetDead())
+                    Task<bool> t2 = MainUI.api.IsPetDeadAsync();
+                    t2.Wait();
+                    if (t2.Result)
                     {
                         Screen next = new DeadMenu("your animal died");
                         next.Show();
@@ -56,7 +58,7 @@ namespace TamaguchiApp.UI
                         Screen next = new MainMenu("Main Menu");
                         next.Show();
                     }
-                    
+
 
                 }
             }
@@ -71,14 +73,17 @@ namespace TamaguchiApp.UI
                     switch (choice)
                     {
                         case 'y':
-                            MainUI.db.SaveChanges();
-                            MainUI.currentPlayer = null;
+                      
+                            MainUI.CurrentPlayer = null;
                             validChoice = true;
                             this.Show();
                             break;
                         case 'n':
                             validChoice = true;
-                            if (MainUI.currentPlayer.IsPetDead())
+                            Task<bool> t2 = MainUI.api.IsPetDeadAsync();
+                            t2.Wait();
+                         
+                            if (t2.Result)
                             {
                                 Screen next = new DeadMenu("your animal died");
                                 next.Show();

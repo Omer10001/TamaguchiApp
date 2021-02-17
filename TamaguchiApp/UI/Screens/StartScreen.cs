@@ -1,4 +1,4 @@
-﻿using Tamaguchi.UI;
+﻿using TamaguchiApp.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
